@@ -154,7 +154,7 @@ function displayModalStatus(){
 	const timeStatus = document.querySelector('.modal_time');
 	const clockTime = document.querySelector('.clock').innerHTML;
 	const moveStatus = document.querySelector('.modal_moves');
-	const stars  = document.querySelector('.modal_stars');
+	const starStatus  = document.querySelector('.modal_stars');
 	const stars = getStars();
 	timeStatus.innerHTML = `Time = ${clockTime}`;
 	moveStatus.innerHTML = 	`Moves = ${moves}`;
