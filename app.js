@@ -157,7 +157,7 @@ function displayModalStatus(){
 	const stars = getStars();
 	timeStatus.innerHTML = `Time = ${clockTime}`;
 	moveStatus.innerHTML = 	`Moves = ${moves}`;
-	starsStatus.innerHTML = `Stars = ${stars}`;
+	starStatus.innerHTML = `Stars = ${stars}`;
 }
 
 function getStars(){
