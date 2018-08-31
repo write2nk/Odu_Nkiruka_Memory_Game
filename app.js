@@ -189,8 +189,6 @@ function resetGame(){
 	cardShuffle();
 	
 }
-	
-}
 
 function resetClockAndTime(){
 	stopClock();
