@@ -181,11 +181,15 @@ document.querySelector('.modal_replay').addEventListener('click', replayGame);
 document.querySelector('.restart').addEventListener('click', resetGame);
 
 function resetGame(){
+	toggledCards = [];
 	resetClockAndTime();
 	resetMoves();
 	resetStars();
 	resetCards();
 	cardShuffle();
+	
+}
+	
 }
 
 function resetClockAndTime(){
