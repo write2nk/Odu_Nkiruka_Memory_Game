@@ -203,7 +203,7 @@ function resetMoves(){
 function resetStars(){
 	stars = 0;
 	const starList = document.querySelectorAll('.stars li');
-	for(star of starsList){
+	for(star of starList){
 		star.style.display = 'inline';
 	}
 }
