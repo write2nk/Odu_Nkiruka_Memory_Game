@@ -122,9 +122,10 @@ h1 {
     width: 400px;
     top: 50%;
     left: 50%;
-    background: #fff;
+    background: #D98FA4;
     transform: translate(-50%, -70%);
     border-radius: 5px;
+    color: #fff;
     }
 
     .modal_heading{
@@ -133,10 +134,12 @@ h1 {
         align-items: center;
         padding:0 1.5rem;
         border-bottom: 1px solid gray;
+        color:#fff;
     }
     .modal_close{
         font-size: 2rem;
         font-weight: bold;
+        color: #fff;
     }
 
     .modal_status{
@@ -161,5 +164,5 @@ h1 {
         height: 30px;
         background: #fff;
         color: #D98FA4;
-        font-size: 30px;
+        font-size: 15px;
     }
