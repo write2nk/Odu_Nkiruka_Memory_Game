@@ -50,7 +50,7 @@ deck.addEventListener('click', event =>{
 			clockOff = false;
 		}
 	}
-	//if(clickTarget.classList.contains('card') && toggledCards.length < 2 && !toggledCards.includes(clickTarget)){
+	if(clickTarget.classList.contains('card') && toggledCards.length < 2 && !toggledCards.includes(clickTarget)){
 		toggleCard(clickTarget);
 		addToggleCard(clickTarget);
 		if(toggledCards.length === 2){
@@ -62,7 +62,7 @@ deck.addEventListener('click', event =>{
 		if(matched === TOTAL_PAIRS){
 			gameOver();
 		}
-	//}
+	}
 });
 
 function toggleCard(card){
