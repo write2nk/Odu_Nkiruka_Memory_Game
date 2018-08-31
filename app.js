@@ -186,8 +186,7 @@ function resetGame(){
 	resetMoves();
 	resetStars();
 	resetCards();
-	cardShuffle();
-	
+	cardShuffle();	
 }
 
 function resetClockAndTime(){
