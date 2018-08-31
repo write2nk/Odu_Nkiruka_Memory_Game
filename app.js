@@ -182,6 +182,7 @@ document.querySelector('.restart').addEventListener('click', resetGame);
 
 function resetGame(){
 	toggledCards = [];
+	matched = 0;
 	resetClockAndTime();
 	resetMoves();
 	resetStars();
