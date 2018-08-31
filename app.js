@@ -149,7 +149,6 @@ function toggleModal(){
 	checkScore();
 	displayModalStatus();
 }
-
 function displayModalStatus(){
 	const timeStatus = document.querySelector('.modal_time');
 	const clockTime = document.querySelector('.clock').innerHTML;
