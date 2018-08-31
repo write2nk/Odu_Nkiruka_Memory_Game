@@ -216,6 +216,7 @@ function gameOver(){
 }
 
 function replayGame(){
+	matched = 0;
 	resetGame();
 	toggleModal();
 }
