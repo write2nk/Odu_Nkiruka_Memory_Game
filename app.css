@@ -135,6 +135,7 @@ h1 {
     left: 50%;
     transform: translate(-50%, -70%);
     border-radius: 5px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     }
 
     .modal_heading{
@@ -421,7 +422,7 @@ h1 {
 
     
     .modal_body {
-        width: 80%;
+        width: 60%;
     }
 }
 
@@ -446,7 +447,7 @@ h1 {
     }
 
     .modal_body {
-        width: 80%;
+        width: 40%;
     }
 }
 
