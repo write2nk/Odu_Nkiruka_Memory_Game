@@ -136,6 +136,7 @@ h1 {
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     transform: translate(-50%, -70%);
     border-radius: 5px;
+    color: #fff;
     }
 
     .modal_heading{
@@ -168,10 +169,14 @@ h1 {
         display: none;
     }
 
-    button{
+   button{
         width: 70px;
         height: 30px;
+        background: #fff;
+        color: #D98FA4;
+        font-size: 15px;
     }
+
 
 @media screen and (max-width: 385px) {
     body {
@@ -198,6 +203,9 @@ h1 {
     
     .modal_body {
         width: 60%;
+    }
+     .modal_heading{
+        font-size:50%;
     }
 }
 
