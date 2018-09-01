@@ -453,7 +453,12 @@ h1 {
     }
 
     .modal_body {
-        width: 40%;
+        width: 60%;
+    }
+    
+    .modal_heading{
+        font-size:50%;
+    
     }
 }
 
