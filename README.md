@@ -9,5 +9,16 @@ The game is played following these steps below:
 * If the player wishes to reset the game, he/she clicks the reset button on top of the deck
 * when the player completes the games successfully, the game status is being displayed to the player to view
 * If the user wishes to continue with the game, the player clicks replay, else the player clicks cancel and close the game
+
+## Dependacies
+- Font-Awesome
+- Google-fonts
+
+## Installation
+* The player downloads the code from github
+* Then open the file locally through their browser 
+## OR 
+* The Player clicks on this link " https://write2nk.github.io/Odu_Nkiruka_Memory_Game/ "
+
 The game can be viewed following this link below:
 https://write2nk.github.io/Odu_Nkiruka_Memory_Game/
