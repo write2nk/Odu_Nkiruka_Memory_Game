@@ -1,244 +1,453 @@
-/*
- * Create a list that holds all of your cards
- */
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-const deck = document.querySelector('.deck');
-let toggledCards = [];
-
-let clockOff = true;
-let time = 0;
-let moves =0;
-let clockId;
-let matched = 0;
-
-function cardShuffle(){
-	const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
-	const shuffledCards = shuffle(cardsToShuffle);
-	for (card of shuffledCards){
-		deck.appendChild(card);
-	}
+html {
+    box-sizing: border-box;
 }
-cardShuffle();
 
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+header {
+    width: 300px;
+    text-align: center;
+    line-height: 4px;
+    border-radius: 10%;
+    margin-top: 15px;
     }
 
-    return array;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-deck.addEventListener('click', event =>{
-	const clickTarget = event.target;
-	if(isClickValid(clickTarget)){
-		if(clockOff){
-			gameTimer();
-			clockOff = false;
-		}
-	}
-	if(clickTarget.classList.contains('card') && toggledCards.length < 2 && !toggledCards.includes(clickTarget)){
-		toggleCard(clickTarget);
-		addToggleCard(clickTarget);
-		if(toggledCards.length === 2){
-			checkMatch(clickTarget);
-			addMove();
-			checkScore();
-		}
-		const TOTAL_PAIRS = 8;
-		if(matched === TOTAL_PAIRS){
-			gameOver();
-		}
-	}
-});
-
-function toggleCard(card){
-	card.classList.toggle('open');
-	card.classList.toggle('show');
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
 }
-
-function addToggleCard(clickTarget){
-	toggledCards.push(clickTarget);
-	//console.log(toggledCards);
-	}
-
-function checkMatch(){
-	if(toggledCards[0].firstElementChild.className === toggledCards[1].firstElementChild.className){
-		toggledCards[0].classList.toggle('match');
-		toggledCards[1].classList.toggle('match');
-		toggledCards = [];
-		matched++;
-	}else{
-		setTimeout(() =>{
-			toggleCard(toggledCards[0]);
-			toggleCard(toggledCards[1]);
-			toggledCards = [];
-		}, 1000);
-	}
-}
-
-function isClickValid(clickTarget){
-	return(
-		clickTarget.classList.contains('card')&& !clickTarget.classList.contains('match')&&toggledCards.length <2 && !toggledCards.includes(clickTarget)
-		);
-}
-
-function addMove(){
-	moves++;
-	const moveText = document.querySelector('.moves');
-	moveText.innerHTML = moves;
-}
-
-function checkScore(){
-	if(moves === 16 || moves === 24){
-		hideStar();
-	}
-}
-function hideStar(){
-	const starList = document.querySelectorAll('.stars li');
-	for (star of starList){
-		if (star.style.display !== 'none'){
-			star.style.display = 'none';
-			break;
-		}
-		
-	}
-}
-
-//start clock
-function gameTimer(){
-	 clockId = setInterval(()=> {
-		time++;
-		displayTime();
-		console.log(time);
-	},1000);
-}
-
-function stopClock(){
-	clearInterval(clockId);
-}
-
-function displayTime(){
-	const minutes = Math.floor(time/60);
-	const seconds = Math.floor(time%60);
-	const clock = document.querySelector('.clock');
-	if(seconds<10){
-		clock.innerHTML = `${minutes}:0${seconds}`;
-	}else{
-		clock.innerHTML = `${minutes}:${seconds}`;
-	}
-	//console.log(clock);
-}
-
-function toggleModal(){
-	const modal = document.querySelector('.modal_background');
-	modal.classList.toggle('hide');
-	checkScore();
-	displayModalStatus();
-}
-function displayModalStatus(){
-	const timeStatus = document.querySelector('.modal_time');
-	const clockTime = document.querySelector('.clock').innerHTML;
-	const moveStatus = document.querySelector('.modal_moves');
-	const starStatus  = document.querySelector('.modal_stars');
-	const stars = getStars();
-	timeStatus.innerHTML = `Time = ${clockTime}`;
-	moveStatus.innerHTML = 	`Moves = ${moves}`;
-	starStatus.innerHTML = `Stars = ${stars}`;
-}
-
-function getStars(){
-	stars = document.querySelectorAll('.stars li');
-	starCount = 0;
-	for(star of stars){
-		if(star.style.display !== 'none'){
-			starCount++;
-		}
-	}
-	//console.log(starCount);
-	return starCount;
-}
-
-document.querySelector('.modal_cancel').addEventListener('click', ()=>{
-	toggleModal();
-});
-
-document.querySelector('.modal_replay').addEventListener('click', replayGame);
-
-document.querySelector('.restart').addEventListener('click', resetGame);
-
-function resetGame(){
-	toggledCards = [];
-	matched = 0;
-	resetClockAndTime();
-	resetMoves();
-	resetStars();
-	resetCards();
-	cardShuffle();	
-}
-
-function resetClockAndTime(){
-	stopClock();
-	clockOff = true;
-	time = 0;
-	displayTime();
-}
-
-function resetMoves(){
-	moves = 0;
-	document.querySelector('.moves').innerHTML = moves;
-}
-
-function resetStars(){
-	stars = 0;
-	const starList = document.querySelectorAll('.stars li');
-	for(star of starList){
-		star.style.display = 'inline';
-	}
-}
-
-function gameOver(){
-	stopClock();
-	displayModalStatus();
-	toggleModal();
-}
-
-function replayGame(){
-	matched = 0;
-	resetGame();
-	toggleModal();
-}
-
-function resetCards(){
-	const cards = document.querySelectorAll('.deck li');
-	for (let card of cards){
-		card.className = 'card';
-	}
-}
-// Shuffle function from http://stackoverflow.com/a/2450976
-
-
 
 /*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ * Styles for the deck of cards
  */
+
+.deck {
+    width: 560px;
+    min-height: 550px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 100px;
+    width: 100px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+.modal_background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.438);
+
+
+}
+.modal_body{
+    position: relative;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    transform: translate(-50%, -70%);
+    border-radius: 5px;
+    }
+
+    .modal_heading{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 1.5rem;
+        border-bottom: 1px solid gray;
+    }
+    .modal_close{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .modal_status{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .modal_buttons{
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem;
+    }
+    .hide{
+        display: none;
+    }
+
+    button{
+        width: 70px;
+        height: 30px;
+    }
+
+@media screen and (max-width: 385px) {
+    body {
+        width: 100%;
+        height: 70%;
+    }
+
+    .container {
+        width: 100%;
+        
+        margin: 0 auto;
+    }
+
+    .deck {
+        width: 90%;
+        height: 80%;
+    }
+
+    .deck .card {
+        width: 15vw;
+        height: 30vw;
+    }
+
+    
+    .modalBody {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 386px) and (max-width: 600px) {
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .deck {
+        width: 90%;
+    }
+
+    .deck .card {
+        width: 16vw;
+        height: 20vw;
+    }
+
+    .modalBody {
+        width: 80%;
+    }
+}
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+header {
+    width: 300px;
+    text-align: center;
+    line-height: 4px;
+    border-radius: 10%;
+    margin-top: 15px;
+    }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 560px;
+    min-height: 550px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 100px;
+    width: 100px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+.modal_background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.438);
+
+
+}
+.modal_body{
+    position: relative;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    transform: translate(-50%, -70%);
+    border-radius: 5px;
+    }
+
+    .modal_heading{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 1.5rem;
+        border-bottom: 1px solid gray;
+    }
+    .modal_close{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .modal_status{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .modal_buttons{
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem;
+    }
+    .hide{
+        display: none;
+    }
+
+    button{
+        width: 70px;
+        height: 30px;
+    }
+
+@media screen and (max-width: 385px) {
+    body {
+        width: 100%;
+        height: 70%;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .deck {
+        width: 90%;
+        height: 80%;
+    }
+
+    .deck .card {
+        width: 15vw;
+        height: 30vw;
+    }
+
+    
+    .modal_body {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 386px) and (max-width: 600px) {
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .deck {
+        width: 90%;
+    }
+
+    .deck .card {
+        width: 16vw;
+        height: 20vw;
+    }
+
+    .modal_body {
+        width: 80%;
+    }
+}
+
+
