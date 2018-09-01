@@ -5,10 +5,12 @@ The memory game also know as `Mind Game` is a pair matching card game, where a p
 The game is played following these steps below:
 * The player launches the game
 * The player clicks on the cards to select matches
-* The players repeats the action on step(2) untill the games completes
-* If the player wishes to reset the game, he/she clicks the reset button on top of the deck
-* when the player completes the games successfully, the game status is being displayed to the player to view
-* If the user wishes to continue with the game, the player clicks replay, else the player clicks cancel and close the game
+* The players repeats the action on step(2) untill he/she wins the game
+* A player wins once all cards have successfully been matched.
+* When the player completes the games successfully, a modal appears to congratulate the player and ask if they want to play again. 
+* The modal contains 2 buttons "cancel" and "replay"
+* If the user wishes to continue with the game, the restart button allows the player to reset the game board, the timer, and the star rating.
+* If the player wishes to reset the game, he/she clicks the reset button on top of the deck else the player can click cancel to exit the game.
 
 ## Dependacies
 - Font-Awesome
