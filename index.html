@@ -6,7 +6,9 @@
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="small_screen.css" media="screen and (max-width:385px)">
+    <link rel="stylesheet" type="text/css" href="big_screen.css" media="screen and (min-width:386px) and (max-width:600px)">
     <link rel="stylesheet" href="app.css">
 </head>
 
@@ -22,19 +24,19 @@
 
         <section class="score-panel">
             <span class = "clock">0.00</span>
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        	</ul>
+            <ul class="stars">
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+            </ul>
 
 
-        	<span class="moves">0</span> Moves
+            <span class="moves">0</span> Moves
 
 
             <div class="restart">
-        		<i class="fa fa-repeat"></i>
-        	</div>
+                <i class="fa fa-repeat"></i>
+            </div>
         </section>
 
         <ul class="deck">
@@ -106,13 +108,12 @@
                 <button class="modal_replay">Replay</button>
             </div>
         </div>
-    
-      <script type="text/javascript" src="jquery.min.js"></script>
+    </div>
 
     <script src="app.js"></script>
 
 
-</div>
+
 </body>
 
 </html>
