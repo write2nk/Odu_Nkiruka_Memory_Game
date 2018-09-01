@@ -144,6 +144,7 @@ h1 {
         align-items: center;
         padding:0 1.5rem;
         border-bottom: 1px solid gray;
+      
     }
     .modal_close{
         font-size: 2rem;
@@ -423,6 +424,11 @@ h1 {
     
     .modal_body {
         width: 60%;
+    }
+    
+    .modal_heading{
+        font-size:50%;
+    
     }
 }
 
