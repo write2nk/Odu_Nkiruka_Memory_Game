@@ -18,7 +18,7 @@ The game is played following these steps below:
 * The player downloads the code from github
 * Then open the file locally through their browser 
 ## OR 
-* The Player clicks on this [link] (https://write2nk.github.io/Odu_Nkiruka_Memory_Game/)
+* The Player clicks on this [link] (https://write2nk.github.io/Odu_Nkiruka_Memory_Game/).
 
 ## About the Author ##
 `Odu Nkiruka` is a scholar and an opportuned recipient of Google-Africa Scholarship. She is currently running her Nano Degree program on Udacity `front-end track`. She is very passionate about web and programming and very flexible and open-minded; always ready to learn and build more skills. 
