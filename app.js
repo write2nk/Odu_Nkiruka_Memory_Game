@@ -406,6 +406,7 @@ h1 {
 
     .container {
         width: 100%;
+        
         margin: 0 auto;
     }
 
@@ -420,7 +421,7 @@ h1 {
     }
 
     
-    .modal_body {
+    .modalBody {
         width: 80%;
     }
 }
@@ -445,7 +446,7 @@ h1 {
         height: 20vw;
     }
 
-    .modal_body {
+    .modalBody {
         width: 80%;
     }
 }
