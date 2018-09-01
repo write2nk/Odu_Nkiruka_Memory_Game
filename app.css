@@ -124,7 +124,7 @@ h1 {
     left: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: rgba(0,0,0,0.438);
 
 
 }
@@ -136,6 +136,7 @@ h1 {
     transform: translate(-50%, -70%);
     border-radius: 5px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    color: #fff;
     }
 
     .modal_heading{
@@ -144,11 +145,14 @@ h1 {
         align-items: center;
         padding:0 1.5rem;
         border-bottom: 1px solid gray;
+        color: #fff;
       
     }
     .modal_close{
         font-size: 2rem;
         font-weight: bold;
+        color: #fff;
+
     }
 
     .modal_status{
