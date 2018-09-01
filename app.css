@@ -124,7 +124,7 @@ h1 {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.438);
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 
 
 }
@@ -133,7 +133,6 @@ h1 {
     width: 400px;
     top: 50%;
     left: 50%;
-    background: #fff;
     transform: translate(-50%, -70%);
     border-radius: 5px;
     }
@@ -421,7 +420,7 @@ h1 {
     }
 
     
-    .modalBody {
+    .modal_body {
         width: 80%;
     }
 }
@@ -446,7 +445,7 @@ h1 {
         height: 20vw;
     }
 
-    .modalBody {
+    .modal_body {
         width: 80%;
     }
 }
